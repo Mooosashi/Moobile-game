@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class Object : Interactable, IClickable
 {
-    [Header("References")]
-    [SerializeField] private GameObject closeUpVirtualCamera;
+    [Header("Interaction")]
     [SerializeField] private CinemachineTargetGroup cinemachineTargetGroup;
 
-    public void Interact()
+    public void OnClick()
     {
-        Debug.Log(this.gameObject.name + " interaction");
+        Debug.Log("Interacting with " + this.gameObject.name);
 
+        SetState(InteractableState.interacting);
         GameManager.instance.SetState(GameState.interacting);
-        cinemachineTargetGroup.AddMember(this.gameObject.transform, TargetGroupWeight, 1);
+
+        GameManager.instance.AddTargetGroupMember(this.gameObject.transform);
     }
 }

@@ -8,8 +8,11 @@ public class Interactable : MonoBehaviour
     public InteractableState currentState = InteractableState.neutral;
     public InteractableState CurrentState { get => currentState; private set => currentState = value; }
 
-    private float targetGroupWeight = 2f;
+    [SerializeField] private float targetGroupWeight = 2f;
     public float TargetGroupWeight { get => targetGroupWeight; [SerializeField] private set => targetGroupWeight = value; }
+
+    [SerializeField] private float targetGroupRadius = 2f;
+    public float TargetGroupRadius { get => targetGroupRadius; [SerializeField] private set => targetGroupRadius = value; }
 
     public void SetState (InteractableState state)
     {

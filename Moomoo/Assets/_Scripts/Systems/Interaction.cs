@@ -25,7 +25,7 @@ public class Interaction : MonoBehaviour
                 {
                     IClickable clickableInterface;
                     clickableInterface = hit.transform.GetComponent<IClickable>();
-                    clickableInterface.Interact();
+                    clickableInterface.OnClick();
                 }
                 else
                 {

@@ -1,14 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public enum GameState { freeMovement, interacting, pause, dead }
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("General references")]
     [SerializeField] private GameObject UIJoystick;
+
+    [Header("Interaction parameters")]
+    [SerializeField] private Transform currentInteractable;
     [SerializeField] private GameObject closeUpCamera;
+    [SerializeField] private CinemachineTargetGroup closeUpTargetGroup;
+
+    [SerializeField] private float targetGroupWeight = 2f;
+    public float TargetGroupWeight { get => targetGroupWeight; [SerializeField] private set => targetGroupWeight = value; }
+
+    [SerializeField] private float targetGroupRadius = 2f;
+    public float TargetGroupRadius { get => targetGroupRadius; [SerializeField] private set => targetGroupRadius = value; }
+
 
     private GameState currentState;
 
@@ -23,6 +36,7 @@ public class GameManager : MonoBehaviour
                 case GameState.freeMovement:
                     UIJoystick.SetActive(true);
                     closeUpCamera.SetActive(false);
+                    GameManager.instance.RemoveTargetGroupMember();
                     break;
 
                 case GameState.interacting:
@@ -55,5 +69,19 @@ public class GameManager : MonoBehaviour
     public void SetState(GameState state)
     {
         CurrentState = state;
+    }
+
+    public void AddTargetGroupMember(Transform interactableObject)
+    {
+        currentInteractable = interactableObject;
+        closeUpTargetGroup.AddMember(currentInteractable, TargetGroupWeight, TargetGroupRadius);
+    }
+    private void RemoveTargetGroupMember()
+    {
+        if (currentInteractable)
+        {
+            closeUpTargetGroup.RemoveMember(currentInteractable);
+            currentInteractable = null;
+        }
     }
 }
