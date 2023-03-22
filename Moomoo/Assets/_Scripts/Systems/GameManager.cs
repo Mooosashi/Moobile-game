@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("Systems")]
+    [SerializeField] private UIManager UIManager;
+
     [Header("General references")]
     [SerializeField] private GameObject UIJoystick;
 
@@ -34,14 +37,11 @@ public class GameManager : MonoBehaviour
             switch (value)
             {
                 case GameState.freeMovement:
-                    UIJoystick.SetActive(true);
-                    closeUpCamera.SetActive(false);
-                    GameManager.instance.RemoveTargetGroupMember();
+                    FreeMovementState();
                     break;
 
                 case GameState.interacting:
-                    UIJoystick.SetActive(false);
-                    closeUpCamera.SetActive(true);
+                    InteractingState();
                     break;
 
                 case GameState.pause:
@@ -83,5 +83,22 @@ public class GameManager : MonoBehaviour
             closeUpTargetGroup.RemoveMember(currentInteractable);
             currentInteractable = null;
         }
+    }
+
+
+    // ON GAME STATE CHANGE LOGIC
+    private void FreeMovementState()
+    {
+        closeUpCamera.SetActive(false);
+        UIJoystick.SetActive(true);
+        RemoveTargetGroupMember();
+        UIManager.HideInteractionMenu();
+    }
+
+    private void InteractingState()
+    {
+        closeUpCamera.SetActive(true);
+        UIJoystick.SetActive(false);
+        UIManager.ShowInteractionMenu();
     }
 }

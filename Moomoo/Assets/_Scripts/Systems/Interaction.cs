@@ -21,13 +21,13 @@ public class Interaction : MonoBehaviour
             if (Physics.Raycast(ray, out hit, raycastLength))
             {
                 Debug.DrawRay(ray.origin, ray.direction * raycastLength, Color.red, raycastDuration);
-                if (hit.transform.gameObject.GetComponent<IClickable>() != null && hit.transform.gameObject.GetComponent<Interactable>().currentState == InteractableState.interactable)
+                if (hit.transform.gameObject.GetComponent<IClickable>() != null && hit.transform.gameObject.GetComponent<Interactable>().currentState == InteractableState.interactable && GameManager.instance.CurrentState == GameState.freeMovement)
                 {
                     IClickable clickableInterface;
                     clickableInterface = hit.transform.GetComponent<IClickable>();
                     clickableInterface.OnClick();
                 }
-                else
+                else if (GameManager.instance.CurrentState == GameState.interacting)
                 {
                     GameManager.instance.SetState(GameState.freeMovement);
                 }

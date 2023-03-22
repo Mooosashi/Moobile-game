@@ -328,6 +328,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 445640534}
+  - {fileID: 775414550}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -689,9 +690,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b6e4777d4bd3e47ae04514e41af7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 427427325}
   originalPosition: {x: 0, y: 0, z: 0}
-  newPosition: {x: -540, y: 0, z: 0}
-  duration: 5
+  newPosition: {x: 0, y: 0, z: 0}
+  duration: 0.4
 --- !u!1 &445640533
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,8 +722,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 775414550}
+  m_Children: []
   m_Father: {fileID: 223892926}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -738,6 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIJoystick: {fileID: 1253281515}
+  UIManager: {fileID: 775414551}
   currentInteractable: {fileID: 0}
   closeUpCamera: {fileID: 747427004}
   closeUpTargetGroup: {fileID: 1662128248}
@@ -1197,8 +1199,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 445640534}
-  m_RootOrder: 0
+  m_Father: {fileID: 223892926}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &775414551
 MonoBehaviour:
