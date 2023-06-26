@@ -29,7 +29,9 @@ public class Interaction : MonoBehaviour
                 }
                 else if (GameManager.instance.CurrentState == GameState.interacting)
                 {
+                    
                     GameManager.instance.SetState(GameState.freeMovement);
+                    
                 }
             }
         }

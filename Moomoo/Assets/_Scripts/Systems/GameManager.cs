@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         if (currentInteractable)
         {
             closeUpTargetGroup.RemoveMember(currentInteractable);
+            currentInteractable.gameObject.GetComponent<Object>().SetState(InteractableState.interactable);
             currentInteractable = null;
         }
     }
