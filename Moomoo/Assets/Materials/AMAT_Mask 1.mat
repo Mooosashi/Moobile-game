@@ -53,10 +53,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _Activate: 1
+    - _Emissive: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _Box_extents: {r: 6, g: 7, b: 6, a: 0}
     - _Box_position: {r: 0, g: 1, b: 0, a: 0}
+    - _Emissive_color: {r: 0, g: 0, b: 0, a: 0}
     - _Override_color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
