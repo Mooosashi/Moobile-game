@@ -23,6 +23,4 @@ public class Interactable : MonoBehaviour
     {
         currentState = InteractableState.neutral;
     }
-
-    // I'm testing this branching thingy
 }

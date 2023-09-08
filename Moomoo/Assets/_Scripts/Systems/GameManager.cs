@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public enum GameState { freeMovement, interacting, pause, dead }
+public enum GameState { moving, still, interacting, pause, dead }
+
+[DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     [Header("Systems")]
-    [SerializeField] private UIManager UIManager;
+    [SerializeField] public UIManager UIManager;
+    [SerializeField] public DialogueManager dialogueManager;
+    [SerializeField] public InputManager inputManager;
 
     [Header("General references")]
     [SerializeField] private GameObject UIJoystick;
 
     [Header("Interaction parameters")]
-    [SerializeField] private Transform currentInteractable;
+    [SerializeField] private GameObject currentInteractable;
     [SerializeField] private GameObject closeUpCamera;
     [SerializeField] private CinemachineTargetGroup closeUpTargetGroup;
 
@@ -36,8 +40,12 @@ public class GameManager : MonoBehaviour
 
             switch (value)
             {
-                case GameState.freeMovement:
-                    FreeMovementState();
+                case GameState.moving:
+                    MovingState();
+                    break;
+
+                case GameState.still:
+                    StillState();
                     break;
 
                 case GameState.interacting:
@@ -66,21 +74,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SetState(GameState.still);
+    }
+
     public void SetState(GameState state)
     {
         CurrentState = state;
     }
 
-    public void AddTargetGroupMember(Transform interactableObject)
+    public void AddTargetGroupMember(GameObject interactableObject)
     {
         currentInteractable = interactableObject;
-        closeUpTargetGroup.AddMember(currentInteractable, TargetGroupWeight, TargetGroupRadius);
+        closeUpTargetGroup.AddMember(currentInteractable.transform, TargetGroupWeight, TargetGroupRadius);
     }
     private void RemoveTargetGroupMember()
     {
         if (currentInteractable)
         {
-            closeUpTargetGroup.RemoveMember(currentInteractable);
+            closeUpTargetGroup.RemoveMember(currentInteractable.transform);
             currentInteractable.gameObject.GetComponent<Object>().SetState(InteractableState.interactable);
             currentInteractable = null;
         }
@@ -88,7 +101,12 @@ public class GameManager : MonoBehaviour
 
 
     // ON GAME STATE CHANGE LOGIC
-    private void FreeMovementState()
+    private void MovingState()
+    {
+        
+    }
+
+    private void StillState()
     {
         closeUpCamera.SetActive(false);
         UIJoystick.SetActive(true);
@@ -101,5 +119,6 @@ public class GameManager : MonoBehaviour
         closeUpCamera.SetActive(true);
         UIJoystick.SetActive(false);
         UIManager.ShowInteractionMenu();
+        dialogueManager.EnterDialogue(currentInteractable.GetComponent<Object>().inkJSON);
     }
 }

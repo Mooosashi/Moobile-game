@@ -13,7 +13,6 @@ public class InteractionMenu : MonoBehaviour
     private void Start()
     {
         originalPosition = rectTransform.localPosition;
-        
     }
 
     private void OnEnable()

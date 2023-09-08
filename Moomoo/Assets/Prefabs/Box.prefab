@@ -79,7 +79,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9779dfcdfb754242ab9ff19e1883856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeUpVirtualCamera: {fileID: 0}
+  currentState: 0
+  targetGroupWeight: 2
+  targetGroupRadius: 2
   cinemachineTargetGroup: {fileID: 0}
 --- !u!1 &3626407272570473630
 GameObject:
@@ -208,16 +210,31 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 65b2bd63033586b4e8628b508a59d1a0, type: 2}
+    - target: {fileID: -6650304018865234114, guid: 415970614c080b24e95a0ef3a32f6356,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mask
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 415970614c080b24e95a0ef3a32f6356,
         type: 3}
       propertyPath: m_Name
       value: MOD_Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 415970614c080b24e95a0ef3a32f6356,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4556533453016587443, guid: 415970614c080b24e95a0ef3a32f6356,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6dcefb9a2982fd945a93f4d6f8805daf, type: 2}
+    - target: {fileID: 7725722708412619893, guid: 415970614c080b24e95a0ef3a32f6356,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mask
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415970614c080b24e95a0ef3a32f6356, type: 3}
 --- !u!4 &3880184567531589509 stripped

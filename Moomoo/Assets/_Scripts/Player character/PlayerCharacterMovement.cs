@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCharacterMovement : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [Header("References")]
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Joystick joystick;
@@ -14,6 +16,10 @@ public class PlayerCharacterMovement : MonoBehaviour
     [SerializeField] private float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
 
+    private void Awake()
+    {
+        gameManager = GameManager.instance;
+    }
 
     void Update()
     {
@@ -30,6 +36,13 @@ public class PlayerCharacterMovement : MonoBehaviour
 
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDirection.normalized * speed * Time.deltaTime);
+
+            gameManager.SetState(GameState.moving);
         }
+        else
+        {
+            gameManager.SetState(GameState.still);
+        }
+
     }
 }
