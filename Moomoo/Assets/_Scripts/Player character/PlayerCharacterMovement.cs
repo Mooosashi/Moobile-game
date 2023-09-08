@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerCharacterMovement : MonoBehaviour
 {
-    private GameManager gameManager;
-
     [Header("References")]
+    [SerializeField] private PlayerCharacter playerCharacter;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Joystick joystick;
     [SerializeField] private Transform mainCamera;
@@ -15,11 +14,6 @@ public class PlayerCharacterMovement : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
-
-    private void Awake()
-    {
-        gameManager = GameManager.instance;
-    }
 
     void Update()
     {
@@ -37,11 +31,13 @@ public class PlayerCharacterMovement : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDirection.normalized * speed * Time.deltaTime);
 
-            gameManager.SetState(GameState.moving);
+            playerCharacter.SetPlayerState(PlayerState.moving);
+            playerCharacter.gameManager.SetDebugPlayerStateText(PlayerState.moving);
         }
         else
         {
-            gameManager.SetState(GameState.still);
+            playerCharacter.SetPlayerState(PlayerState.still);
+            playerCharacter.gameManager.SetDebugPlayerStateText(PlayerState.still);
         }
 
     }

@@ -32,7 +32,7 @@ public class Interaction : MonoBehaviour
 
     public void Interact(Vector2 touchPosition)
     {
-        if (GameManager.instance.CurrentState == GameState.still)
+        if (GameManager.instance.CurrentGameState == GameState.freeMovement)
         {
             RaycastHit hit;
             Ray ray = cameraMain.ScreenPointToRay(touchPosition);
@@ -46,12 +46,6 @@ public class Interaction : MonoBehaviour
                     clickableInterface = hit.transform.GetComponent<IClickable>();
                     clickableInterface.OnClick();
                 }
-                //else if (GameManager.instance.CurrentState == GameState.interacting)
-                //{
-
-                //    GameManager.instance.SetState(GameState.still);
-
-                //}
             }
         }
     }

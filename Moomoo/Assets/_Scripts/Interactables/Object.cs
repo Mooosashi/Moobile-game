@@ -14,6 +14,6 @@ public class Object : Interactable, IClickable
 
         SetState(InteractableState.interacting);
         GameManager.instance.AddTargetGroupMember(this.gameObject);
-        GameManager.instance.SetState(GameState.interacting);
+        GameManager.instance.SetGameState(GameState.interacting);
     }
 }

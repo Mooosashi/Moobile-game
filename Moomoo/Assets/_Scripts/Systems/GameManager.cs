@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using TMPro;
 
-public enum GameState { moving, still, interacting, pause, dead }
+public enum GameState { test, freeMovement, interacting, pause, dead }
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("Debugging")]
+    [SerializeField] private TextMeshProUGUI debugGameState;
+    [SerializeField] private TextMeshProUGUI debugPlayerState;
+    public void SetDebugGameStateText(GameState state) { debugGameState.text = "Game state: " + state + "."; }
+    public void SetDebugPlayerStateText(PlayerState state) { debugPlayerState.text = "Player state: " + state + "."; }
+
 
     [Header("Systems")]
     [SerializeField] public UIManager UIManager;
@@ -29,23 +37,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float targetGroupRadius = 2f;
     public float TargetGroupRadius { get => targetGroupRadius; [SerializeField] private set => targetGroupRadius = value; }
 
+    private GameState currentGameState;
 
-    private GameState currentState;
-
-    public GameState CurrentState {
-        get => currentState;
+    public GameState CurrentGameState {
+        get => currentGameState;
         
-        private set {
-            currentState = value;
+        private set
+        {
+            currentGameState = value;
 
             switch (value)
             {
-                case GameState.moving:
-                    MovingState();
-                    break;
-
-                case GameState.still:
-                    StillState();
+                case GameState.freeMovement:
+                    FreeMovementState();
                     break;
 
                 case GameState.interacting:
@@ -76,13 +80,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SetState(GameState.still);
+        SetGameState(GameState.freeMovement);
     }
 
-    public void SetState(GameState state)
+    public void SetGameState(GameState state)
     {
-        CurrentState = state;
+        CurrentGameState = state;
     }
+
 
     public void AddTargetGroupMember(GameObject interactableObject)
     {
@@ -101,17 +106,14 @@ public class GameManager : MonoBehaviour
 
 
     // ON GAME STATE CHANGE LOGIC
-    private void MovingState()
-    {
-        
-    }
 
-    private void StillState()
+    private void FreeMovementState()
     {
         closeUpCamera.SetActive(false);
         UIJoystick.SetActive(true);
         RemoveTargetGroupMember();
         UIManager.HideInteractionMenu();
+        SetDebugGameStateText(GameState.freeMovement);
     }
 
     private void InteractingState()
@@ -120,5 +122,6 @@ public class GameManager : MonoBehaviour
         UIJoystick.SetActive(false);
         UIManager.ShowInteractionMenu();
         dialogueManager.EnterDialogue(currentInteractable.GetComponent<Object>().inkJSON);
+        SetDebugGameStateText(GameState.interacting);
     }
 }
