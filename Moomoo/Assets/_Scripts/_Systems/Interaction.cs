@@ -45,6 +45,7 @@ public class Interaction : MonoBehaviour
                     IClickable clickableInterface;
                     clickableInterface = hit.transform.GetComponent<IClickable>();
                     clickableInterface.OnClick();
+                    Debug.Log("Interact!");
                 }
             }
         }

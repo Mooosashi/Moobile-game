@@ -5,6 +5,8 @@ using UnityEngine;
 public enum InteractableState { neutral, interactable, interacting }
 public class Interactable : MonoBehaviour
 {
+    [SerializeField] public TextAsset inkJSON;
+
     public InteractableState currentState = InteractableState.neutral;
     public InteractableState CurrentState { get => currentState; private set => currentState = value; }
 

@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9779dfcdfb754242ab9ff19e1883856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inkJSON: {fileID: 4900000, guid: 2ca1c8fadbe2cfc469aab95e2193945e, type: 3}
   currentState: 0
   targetGroupWeight: 2
   targetGroupRadius: 2
-  cinemachineTargetGroup: {fileID: 0}
 --- !u!1 &3626407272570473630
 GameObject:
   m_ObjectHideFlags: 0

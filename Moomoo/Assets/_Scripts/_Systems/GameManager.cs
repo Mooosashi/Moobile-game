@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject UIJoystick;
 
     [Header("Interaction parameters")]
-    [SerializeField] private GameObject currentInteractable;
+    [SerializeField] public GameObject currentInteractable;
     [SerializeField] private GameObject closeUpCamera;
     [SerializeField] private CinemachineTargetGroup closeUpTargetGroup;
 
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         if (currentInteractable)
         {
             closeUpTargetGroup.RemoveMember(currentInteractable.transform);
-            currentInteractable.gameObject.GetComponent<Object>().SetState(InteractableState.interactable);
+            currentInteractable.gameObject.GetComponent<Interactable>().SetState(InteractableState.interactable);
             currentInteractable = null;
         }
     }
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         closeUpCamera.SetActive(true);
         UIJoystick.SetActive(false);
         UIManager.ShowInteractionMenu();
-        dialogueManager.EnterDialogue(currentInteractable.GetComponent<Object>().inkJSON);
+        dialogueManager.EnterDialogue(currentInteractable.GetComponent<Interactable>().inkJSON);
         SetDebugGameStateText(GameState.interacting);
     }
 }
