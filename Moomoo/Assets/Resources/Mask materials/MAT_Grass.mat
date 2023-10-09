@@ -38,6 +38,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal_map:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2D:
         m_Texture: {fileID: 2800000, guid: a64b0b3c9beaacf479c90abebd85a667, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -61,8 +65,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Box_extents: {r: 6, g: 7, b: 6, a: 0}
+    - _Box_extents: {r: 6, g: 15, b: 6, a: 0}
     - _Box_position: {r: 0, g: 0, b: 0, a: 0}
-    - _Emissive_color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emissive_color: {r: 0, g: 0, b: 0, a: 0.2784314}
     - _Override_color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

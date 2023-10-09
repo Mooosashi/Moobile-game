@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     public void SetDebugGameStateText(GameState state) { debugGameState.text = "Game state: " + state + "."; }
     public void SetDebugPlayerStateText(PlayerState state) { debugPlayerState.text = "Player state: " + state + "."; }
 
-
     [Header("Systems")]
+    [SerializeField] public PlayerCharacter playerCharacter;
     [SerializeField] public UIManager UIManager;
     [SerializeField] public DialogueManager dialogueManager;
     [SerializeField] public InputManager inputManager;
@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SetGameState(GameState.freeMovement);
+
+        Application.targetFrameRate = 60;
     }
 
     public void SetGameState(GameState state)

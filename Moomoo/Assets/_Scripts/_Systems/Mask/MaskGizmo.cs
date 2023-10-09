@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class MaskGizmo : MonoBehaviour
 {
-    [Header("Bounding box")]
+    [SerializeField] private MaskDataUpdater maskDataUpdater;
+
+    [Header("Parameters")]
     [SerializeField] Color color = Color.white;
-    [SerializeField] Vector3 position;
+    [SerializeField] Vector3 target;
     [SerializeField] Vector3 scale;
-    [SerializeField] GameObject target;
+
 
     private void OnDrawGizmos()
     {
+        Vector3 targetPosition = maskDataUpdater.targetTransform.position;
+        target = new Vector3(targetPosition.x, targetPosition.y + maskDataUpdater.YOffset, targetPosition.z);
+        scale = maskDataUpdater.boxExtents * 2;
         Gizmos.color = color;
-        if (target == null)
-        {
-            Gizmos.DrawCube(position, scale);
-        }
-        else
-        {
-            Gizmos.DrawCube(target.transform.position, scale);
-        }
+        Gizmos.DrawCube(target, scale);
     }
 }

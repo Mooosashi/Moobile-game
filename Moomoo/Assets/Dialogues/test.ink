@@ -1,5 +1,7 @@
 INCLUDE _globals.ink
 
+EXTERNAL PlaySound(soundName)
+
 { talkedToBox1:
 - 0: -> main
 - 1: -> time1
@@ -38,6 +40,7 @@ What will you do?
                 
     * [Open it]
         The key gently slides into the hole.
+        ~PlaySound("Click")
         A metallic click escapes from the mechanism.
         A little handle pops up on the side of the structure as it invited you to look inside.
         -> DONE

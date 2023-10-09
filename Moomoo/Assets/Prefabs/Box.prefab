@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3626407272436075433}
   - component: {fileID: 3626407272436075434}
   - component: {fileID: 402887968333131655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,9 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
+  outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 10
+  outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9779dfcdfb754242ab9ff19e1883856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSON: {fileID: 4900000, guid: 2ca1c8fadbe2cfc469aab95e2193945e, type: 3}
+  inkJSON: {fileID: 4900000, guid: abdecd10c0014ac47b1e836b7cd1242c, type: 3}
   currentState: 0
   targetGroupWeight: 2
   targetGroupRadius: 2
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3626407272570473627}
   - component: {fileID: 3626407272570473628}
   - component: {fileID: 3626407272570473629}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Outline trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +212,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 65b2bd63033586b4e8628b508a59d1a0, type: 2}
     - target: {fileID: -6650304018865234114, guid: 415970614c080b24e95a0ef3a32f6356,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -6650304018865234114, guid: 415970614c080b24e95a0ef3a32f6356,
+        type: 3}
       propertyPath: m_TagString
       value: Mask
       objectReference: {fileID: 0}
@@ -219,6 +224,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MOD_Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 415970614c080b24e95a0ef3a32f6356,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 415970614c080b24e95a0ef3a32f6356,
         type: 3}
@@ -230,6 +240,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6dcefb9a2982fd945a93f4d6f8805daf, type: 2}
+    - target: {fileID: 7725722708412619893, guid: 415970614c080b24e95a0ef3a32f6356,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7725722708412619893, guid: 415970614c080b24e95a0ef3a32f6356,
         type: 3}
       propertyPath: m_TagString

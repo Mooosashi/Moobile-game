@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class MaskDataUpdater : MonoBehaviour
 {
-    [SerializeField] private Transform targetTransform;
+    [Header("References")]
+    [SerializeField] public Transform targetTransform;
     [SerializeField] private Material[] materials;
+
+    [Header("Parameters")]
+    [SerializeField] public float YOffset;
+    [SerializeField] public Vector3 boxExtents = new Vector3(6f, 6f, 6f);
 
 
     private void Start()
@@ -34,7 +39,8 @@ public class MaskDataUpdater : MonoBehaviour
     {
         for (int i = 0; i < materials.Length; i++)
         {
-            materials[i].SetVector("_Box_position", targetTransform.position);
+            materials[i].SetVector("_Box_position", new Vector3(targetTransform.position.x, targetTransform.position.y + YOffset, targetTransform.position.z));
+            materials[i].SetVector("_Box_extents", boxExtents);
         }
     }
 

@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public enum PlayerState { moving, still }
 
 public class PlayerCharacter : MonoBehaviour
 {
     public GameManager gameManager;
+    private PlayerState currentPlayerState;
 
     [Header("References")]
     [SerializeField] private PlayerCharacterMovement playerCharacterMovement;
 
-    private PlayerState currentPlayerState;
 
     public PlayerState CurrentPlayerState
     {
@@ -19,20 +20,23 @@ public class PlayerCharacter : MonoBehaviour
         
         private set
         {
+            currentPlayerState = value;
+
             switch (value)
             {
-                case PlayerState.moving:
-                    MovingState();
-                    break;
                 case PlayerState.still:
                     StillState();
                     break;
+
+                case PlayerState.moving:
+                    MovingState();
+                    break;
+
                 default:
                     break;
             }
         }
     }
-
 
     private void Awake()
     {
@@ -46,11 +50,11 @@ public class PlayerCharacter : MonoBehaviour
 
     private void MovingState()
     {
-
+        gameManager.SetDebugPlayerStateText(PlayerState.moving);
     }
 
     private void StillState()
     {
-
+        gameManager.SetDebugPlayerStateText(PlayerState.still);
     }
 }
