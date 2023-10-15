@@ -31,6 +31,7 @@ public class Interaction : MonoBehaviour
         inputManager.OnStartTouch -= Interact;
     }
 
+
     public void Interact(Vector2 touchPosition)
     {
         if (GameManager.instance.CurrentGameState == GameState.freeMovement)
