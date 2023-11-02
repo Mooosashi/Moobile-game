@@ -13,6 +13,14 @@ public class DialogueInkExternalFunctions
             Debug.Log(soundName);
         });
 
+        currentStory.BindExternalFunction("PlayVFX", (string vfxName) => {
+            Debug.Log(vfxName);
+        });
+
+        currentStory.BindExternalFunction("PlayAnimation", (string animationName) => {
+            Debug.Log(animationName);
+        });
+
 
 
 
@@ -22,5 +30,7 @@ public class DialogueInkExternalFunctions
     public void Unbind (Story currentStory)
     {
         currentStory.UnbindExternalFunction("PlaySound");
+        currentStory.UnbindExternalFunction("PlayVFX");
+        currentStory.UnbindExternalFunction("PlayAnimation");
     }
 }

@@ -17,14 +17,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
   center:
-    m_OverrideState: 0
-    m_Value: {x: 0.5, y: 0.5}
+    m_OverrideState: 1
+    m_Value: {x: 0.5, y: 0.77}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.414
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.4
+    m_Value: 0.537
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -40,15 +40,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   postExposure:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -0.27
   contrast:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   colorFilter:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     m_OverrideState: 0
@@ -69,10 +69,10 @@ MonoBehaviour:
   m_Name: SampleSceneProfile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 849379129802519247}
   - {fileID: 114289892390360053}
   - {fileID: -7011558710299706105}
   - {fileID: -3872934206788260978}
+  - {fileID: 6664776992694947184}
 --- !u!114 &114289892390360053
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -87,11 +87,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   threshold:
-    m_OverrideState: 1
-    m_Value: 0.9
+    m_OverrideState: 0
+    m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 8.67
+    m_Value: 10
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -113,7 +113,7 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &849379129802519247
+--- !u!114 &6664776992694947184
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
-  m_Name: Tonemapping
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
   active: 0
-  mode:
+  intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.1

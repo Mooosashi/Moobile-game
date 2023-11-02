@@ -14,10 +14,13 @@ public class MaskGizmo : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector3 targetPosition = maskDataUpdater.targetTransform.position;
-        target = new Vector3(targetPosition.x, targetPosition.y + maskDataUpdater.YOffset, targetPosition.z);
-        scale = maskDataUpdater.boxExtents * 2;
-        Gizmos.color = color;
-        Gizmos.DrawCube(target, scale);
+        if (maskDataUpdater.targetTransform != null)
+        {
+            Vector3 targetPosition = maskDataUpdater.targetTransform.position;
+            target = new Vector3(targetPosition.x, targetPosition.y + maskDataUpdater.YOffset, targetPosition.z);
+            scale = maskDataUpdater.boxExtents * 2;
+            Gizmos.color = color;
+            Gizmos.DrawCube(target, scale);
+        }
     }
 }

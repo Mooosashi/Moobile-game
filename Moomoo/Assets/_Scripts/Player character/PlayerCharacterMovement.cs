@@ -9,7 +9,6 @@ public class PlayerCharacterMovement : MonoBehaviour
     [SerializeField] private PlayerCharacter playerCharacter;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Joystick joystick;
-    [SerializeField] private Transform mainCamera;
     
     [Header("Parameters")]
     [SerializeField] private float speed = 3f;
@@ -35,8 +34,6 @@ public class PlayerCharacterMovement : MonoBehaviour
     {
         if (gameManager.CurrentGameState == GameState.freeMovement)
             Move();
-
-
     }
 
     private void Move()
@@ -50,7 +47,7 @@ public class PlayerCharacterMovement : MonoBehaviour
         {
             playerCharacter.SetPlayerState(PlayerState.moving);
 
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + gameManager.mainCamera.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 

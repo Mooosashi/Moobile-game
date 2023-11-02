@@ -17,12 +17,13 @@ public class MaskDataUpdater : MonoBehaviour
     private void Start()
     {
         LoadMaterials();
-        Enable();
+        Activate();
     }
 
     private void Update()
     {
-        UpdateData();
+        if (targetTransform != null)
+            UpdateData();
     }
 
     private void OnDisable()
@@ -40,6 +41,7 @@ public class MaskDataUpdater : MonoBehaviour
         for (int i = 0; i < materials.Length; i++)
         {
             materials[i].SetVector("_Box_position", new Vector3(targetTransform.position.x, targetTransform.position.y + YOffset, targetTransform.position.z));
+            materials[i].SetFloat("_YOffset", YOffset);
             materials[i].SetVector("_Box_extents", boxExtents);
         }
     }
@@ -50,9 +52,10 @@ public class MaskDataUpdater : MonoBehaviour
         {
             materials[i].SetVector("_Box_position", Vector3.zero);
         }
+        Deactivate();
     }
 
-    public void Enable()
+    public void Activate()
     {
         LoadMaterials();
         for (int i = 0; i < materials.Length; i++)
@@ -61,7 +64,7 @@ public class MaskDataUpdater : MonoBehaviour
         }
     }
 
-    public void Disable()
+    public void Deactivate()
     {
         LoadMaterials();
         for (int i = 0; i < materials.Length; i++)

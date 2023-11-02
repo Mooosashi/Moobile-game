@@ -13,9 +13,10 @@ EXTERNAL PlaySound(soundName)
 #typing sound: Regular
 A lifeless steel crate, sitting alone in the middle of nowhere.
 It has to feel so lonely. You decide to call it "The loneliest steel crate ever".
+~ PlaySound("Por favor funciona")
 "Wow! What a cool name!" #speaker: The loneliest steel crate ever #typing sound: Voice1
 Wait, did this steel crate just talk?  #typing sound: Regular
-Some kind of energy is powering it but there are no cables around. Must be run by batteries. 
+Some kind of energy is powering it but there are no cables around. Must be run by batteries.
 You wonder about all the things that could be stored inside.
 ~ talkedToBox1 = 1
 -> whatToDo
@@ -27,6 +28,7 @@ What will you do?
 {hasKey1:
     * [Kick it]
         A metallic thud resonates. Nothing happens.
+        ~ PlaySound("thud thud thud")
         What will you do now?
         
             * * [Kick it again]
@@ -40,7 +42,7 @@ What will you do?
                 
     * [Open it]
         The key gently slides into the hole.
-        ~PlaySound("Click")
+        ~ PlaySound("Click")
         A metallic click escapes from the mechanism.
         A little handle pops up on the side of the structure as it invited you to look inside.
         -> DONE

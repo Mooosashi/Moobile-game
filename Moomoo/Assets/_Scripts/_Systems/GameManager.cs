@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using TMPro;
 
-public enum GameState { test, freeMovement, interacting, pause, dead }
+public enum GameState { test, initialize, freeMovement, interacting, pause, dead }
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -26,16 +26,20 @@ public class GameManager : MonoBehaviour
     [Header("General references")]
     [SerializeField] private GameObject UIJoystick;
 
-    [Header("Interaction parameters")]
+    [Header("Interaction")]
     [SerializeField] public GameObject currentInteractable;
-    [SerializeField] private GameObject closeUpCamera;
+    [SerializeField] private CinemachineFreeLook mainFLCamera;
+    [SerializeField] public CinemachineVirtualCamera closeUpVCamera;
     [SerializeField] private CinemachineTargetGroup closeUpTargetGroup;
-
+    
     [SerializeField] private float targetGroupWeight = 2f;
     public float TargetGroupWeight { get => targetGroupWeight; [SerializeField] private set => targetGroupWeight = value; }
-
     [SerializeField] private float targetGroupRadius = 2f;
     public float TargetGroupRadius { get => targetGroupRadius; [SerializeField] private set => targetGroupRadius = value; }
+
+    [Header("Other")]
+    [SerializeField] public Camera mainCamera;
+
 
     private GameState currentGameState;
 
@@ -48,6 +52,10 @@ public class GameManager : MonoBehaviour
 
             switch (value)
             {
+                case GameState.initialize:
+                    InitializeState();
+                    break;
+
                 case GameState.freeMovement:
                     FreeMovementState();
                     break;
@@ -78,10 +86,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
-        SetGameState(GameState.freeMovement);
-
+        SetGameState(GameState.initialize);
         Application.targetFrameRate = 60;
     }
 
@@ -108,10 +116,18 @@ public class GameManager : MonoBehaviour
 
 
     // ON GAME STATE CHANGE LOGIC
+    private void InitializeState()
+    {
+        mainFLCamera.Follow = playerCharacter.transform;
+        mainFLCamera.LookAt = playerCharacter.transform; 
+        closeUpTargetGroup.AddMember(playerCharacter.transform, 1f, 1f);
+
+        SetGameState(GameState.freeMovement);
+    }
 
     private void FreeMovementState()
     {
-        closeUpCamera.SetActive(false);
+        closeUpVCamera.gameObject.SetActive(false);
         UIJoystick.SetActive(true);
         RemoveTargetGroupMember();
         UIManager.HideInteractionMenu();
@@ -120,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     private void InteractingState()
     {
-        closeUpCamera.SetActive(true);
+        closeUpVCamera.gameObject.SetActive(true);
         UIJoystick.SetActive(false);
         UIManager.ShowInteractionMenu();
         dialogueManager.EnterDialogue(currentInteractable.GetComponent<Interactable>().inkJSON);

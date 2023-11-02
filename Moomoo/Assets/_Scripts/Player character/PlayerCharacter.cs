@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [System.Serializable]
 public enum PlayerState { moving, still }
@@ -12,6 +13,7 @@ public class PlayerCharacter : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private PlayerCharacterMovement playerCharacterMovement;
+    [SerializeField] private CinemachineVirtualCamera closeUpCamera;
 
 
     public PlayerState CurrentPlayerState
@@ -41,6 +43,8 @@ public class PlayerCharacter : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.instance;
+        gameManager.playerCharacter = this;
+        gameManager.closeUpVCamera = closeUpCamera;
     }
 
     public void SetPlayerState(PlayerState state)
@@ -51,10 +55,12 @@ public class PlayerCharacter : MonoBehaviour
     private void MovingState()
     {
         gameManager.SetDebugPlayerStateText(PlayerState.moving);
+        gameManager.inputManager.cameraRotationAndZoom.RotationAndZoomInput(false);
     }
 
     private void StillState()
     {
         gameManager.SetDebugPlayerStateText(PlayerState.still);
+        gameManager.inputManager.cameraRotationAndZoom.RotationAndZoomInput(true);
     }
 }

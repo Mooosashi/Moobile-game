@@ -14,6 +14,9 @@ public class InputManager : MonoBehaviour
 
     [HideInInspector] public Vector2 swipeAxis;
 
+    [Header("References")]
+    [SerializeField] public CameraRotationAndZoom cameraRotationAndZoom;
+
 
     private void Awake()
     {

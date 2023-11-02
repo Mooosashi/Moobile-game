@@ -10,9 +10,9 @@ public class MaskButton : Editor
     {
         MaskDataUpdater maskDataUpdater = (MaskDataUpdater)target;
         if (GUILayout.Button("Enable"))
-            maskDataUpdater.Enable();
+            maskDataUpdater.Activate();
         if (GUILayout.Button("Disable"))
-            maskDataUpdater.Disable();
+            maskDataUpdater.Deactivate();
 
         DrawDefaultInspector();
     }

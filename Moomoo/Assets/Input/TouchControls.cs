@@ -50,7 +50,7 @@ public partial class @TouchControls : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""af34fb2b-327d-4b4d-8ac6-c426fdc5bf70"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 }

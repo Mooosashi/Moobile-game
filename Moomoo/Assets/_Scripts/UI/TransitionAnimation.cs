@@ -16,6 +16,15 @@ public class TransitionAnimation : MonoBehaviour
     [SerializeField] private float timeBetweenAnims = 0.2f;
 
 
+    private void Start()
+    {
+        GameManager gameManager = GameManager.instance;
+
+        Vector3 maskPosition = mask.transform.position;
+        maskPosition = gameManager.mainCamera.WorldToScreenPoint(gameManager.playerCharacter.transform.position);
+        mask.transform.position = maskPosition;
+    }
+
     public void In()
     {
         mask.transform.localScale = new Vector2(0f, 0f);
