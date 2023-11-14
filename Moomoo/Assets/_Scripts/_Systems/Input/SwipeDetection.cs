@@ -8,9 +8,6 @@ public class SwipeDetection : MonoBehaviour
     private GameManager gameManager;
     private InputManager inputManager;
 
-    [SerializeField] private GameObject camera1;
-    [SerializeField] private CinemachineFreeLook cmFreeLook;
-
     [Header("Parameters")]
     [SerializeField] private float rotationSpeed = 1f;
 

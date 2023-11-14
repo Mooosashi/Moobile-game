@@ -11,7 +11,7 @@ public class Item : Interactable, IClickable
     public void OnClick()
     {
         SetState(InteractableState.interacting);
-        GameManager.instance.AddTargetGroupMember(this.gameObject);
+        GameManager.instance.currentInteractable = this.gameObject;
         GameManager.instance.SetGameState(GameState.interacting);
     }
 

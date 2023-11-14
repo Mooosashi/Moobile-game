@@ -13,7 +13,6 @@ public class PlayerCharacter : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private PlayerCharacterMovement playerCharacterMovement;
-    [SerializeField] private CinemachineVirtualCamera closeUpCamera;
 
 
     public PlayerState CurrentPlayerState
@@ -43,8 +42,10 @@ public class PlayerCharacter : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.instance;
+
         gameManager.playerCharacter = this;
-        gameManager.closeUpVCamera = closeUpCamera;
+        gameManager.maskDataUpdater.GetPlayerCharacter(this.gameObject.transform);
+        CameraSystem.instance.GetPlayerCharacter(this.gameObject);
     }
 
     public void SetPlayerState(PlayerState state)

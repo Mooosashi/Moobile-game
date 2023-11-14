@@ -13,6 +13,13 @@ public class MaskDataUpdater : MonoBehaviour
     [SerializeField] public float YOffset;
     [SerializeField] public Vector3 boxExtents = new Vector3(6f, 6f, 6f);
 
+    GameManager gameManager;
+
+
+    private void Awake()
+    {
+        gameManager = GameManager.instance;
+    }
 
     private void Start()
     {
@@ -29,6 +36,11 @@ public class MaskDataUpdater : MonoBehaviour
     private void OnDisable()
     {
         ResetData();
+    }
+
+    public void GetPlayerCharacter(Transform playerCharacterTransform)
+    {
+        targetTransform = gameManager.playerCharacter.transform;
     }
 
     private void LoadMaterials()

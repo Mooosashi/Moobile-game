@@ -12,15 +12,20 @@ public class InputManager : MonoBehaviour
     public delegate void EndTouchEvent(Vector2 position);
     public event EndTouchEvent OnEndTouch;
 
+    private GameManager gameManager;
+
     [HideInInspector] public Vector2 swipeAxis;
 
     [Header("References")]
     [SerializeField] public CameraRotationAndZoom cameraRotationAndZoom;
+    [SerializeField] public GameObject joystick;
 
 
     private void Awake()
     {
         touchControls = new TouchControls();
+
+        gameManager = GameManager.instance;
     }
 
 
@@ -38,7 +43,6 @@ public class InputManager : MonoBehaviour
     {
         touchControls.Touch.TouchPress.started += ctx => StartTouch(ctx);
         touchControls.Touch.TouchPress.canceled += ctx => EndTouch(ctx);
-
         touchControls.Touch.TouchAxis.performed += ctx => swipeAxis = ctx.ReadValue<Vector2>();
     }
 
@@ -53,6 +57,5 @@ public class InputManager : MonoBehaviour
         if (OnEndTouch != null)
             OnEndTouch(touchControls.Touch.TouchPosition.ReadValue<Vector2>());
     }
-
-
+    
 }

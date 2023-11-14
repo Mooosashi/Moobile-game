@@ -44,6 +44,9 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.instance;
+
+        gameManager.onInteractingState += EnterDialogue;
+
         dialogueVariables = new DialogueVariables(loadGlobalsTextAsset);
         dialogueInkExternalFunctions = new DialogueInkExternalFunctions();
     }
@@ -56,10 +59,12 @@ public class DialogueManager : MonoBehaviour
 
     // DIALOGUE
 
-    public void EnterDialogue(TextAsset inkJSON)
+    public void EnterDialogue(GameObject interactable)
     {
         dialogueSpeakerText.text = "";
 
+        TextAsset inkJSON;
+        inkJSON = interactable.GetComponent<Interactable>().inkJSON;
         currentStory = new Story(inkJSON.text);
         dialogueVariables.StartListening(currentStory);
         dialogueInkExternalFunctions.Bind(currentStory);
@@ -236,5 +241,12 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Ink variable was found to be null: " + variableName);
 
         return variableValue;
+    }
+
+
+
+    private void OnDestroy()
+    {
+        gameManager.onInteractingState -= EnterDialogue;
     }
 }

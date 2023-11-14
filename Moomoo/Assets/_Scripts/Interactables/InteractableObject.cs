@@ -7,7 +7,8 @@ public class InteractableObject : Interactable, IClickable
     public void OnClick()
     {
         SetState(InteractableState.interacting);
-        GameManager.instance.AddTargetGroupMember(this.gameObject);
-        GameManager.instance.SetGameState(GameState.interacting);
+        
+        gameManager.currentInteractable = this.gameObject;
+        gameManager.SetGameState(GameState.interacting);
     }
 }

@@ -8,7 +8,6 @@ public class PlayerCharacterMovement : MonoBehaviour
     private GameManager gameManager;
     [SerializeField] private PlayerCharacter playerCharacter;
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private Joystick joystick;
     
     [Header("Parameters")]
     [SerializeField] private float speed = 3f;
@@ -18,6 +17,7 @@ public class PlayerCharacterMovement : MonoBehaviour
     // [SerializeField] private LayerMask environmentMask;
     private float turnSmoothVelocity;
 
+    private Joystick joystick;
     Vector3 moveDirection;
 
     private void Awake()
@@ -28,6 +28,8 @@ public class PlayerCharacterMovement : MonoBehaviour
     private void Start()
     {
         playerCharacter.SetPlayerState(PlayerState.still);
+
+        joystick = gameManager.inputManager.joystick.GetComponent<Joystick>();
     }
 
     void Update()
